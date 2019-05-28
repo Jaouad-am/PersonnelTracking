@@ -29,12 +29,18 @@ namespace PersonelTracking
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            FrmEmployee em = new FrmEmployee();
+            this.Hide();
+            em.ShowDialog();
+            this.Visible = true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            
+            FrmEmployee em = new FrmEmployee();
+            this.Hide();
+            em.ShowDialog();
+            this.Visible = true;
         }
     }
 }

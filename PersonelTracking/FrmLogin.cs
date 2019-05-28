@@ -41,7 +41,9 @@ namespace PersonelTracking
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
+            FrmMain m = new FrmMain();
+            this.Hide();
+            m.ShowDialog();
             
         }
 =======
