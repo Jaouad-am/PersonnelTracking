@@ -31,8 +31,9 @@ namespace PersonelTracking
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-
+            DEPARTMENT department = new DEPARTMENT();
+            department.DepartmentName = txtDepartment.Text;
+            BLL.DepartmentBLL.AddDepartment(department);
         }
     }
 }
