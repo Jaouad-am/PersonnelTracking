@@ -31,9 +31,18 @@ namespace PersonelTracking
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DEPARTMENT department = new DEPARTMENT();
-            department.DepartmentName = txtDepartment.Text;
-            BLL.DepartmentBLL.AddDepartment(department);
+			if (txtDepartment.Text.Trim() == "")
+            {
+                MessageBox.Show("Please Fill The Name Field");
+            }
+            else
+            {
+				DEPARTMENT department = new DEPARTMENT();
+				department.DepartmentName = txtDepartment.Text;
+				BLL.DepartmentBLL.AddDepartment(department);
+				MessageBox.Show("Department was Added!");
+                txtDepartment.Clear();
+            }
         }
     }
 }
