@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DAL;
+using DAL.DTO;
 
 namespace PersonelTracking
 {
@@ -28,6 +31,7 @@ namespace PersonelTracking
             this.Hide();
             ps.ShowDialog();
             this.Visible = true;
+			FillGrid();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -36,6 +40,20 @@ namespace PersonelTracking
             this.Hide();
             ps.ShowDialog();
             this.Visible = true;
+        }
+		List<PositionDTO> PositionList = new List<PositionDTO>();
+        void FillGrid()
+        {
+            PositionList = PositionBLL.GetPositions();
+            dataGridView1.DataSource = PositionList;
+        }
+        private void FrmPositionList_Load(object sender, EventArgs e)
+        {
+            FillGrid();
+            dataGridView1.Columns[1].Visible = false;
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[0].HeaderText = "Department Name";
+            dataGridView1.Columns[2].HeaderText = "Position Name";
         }
     }
 }

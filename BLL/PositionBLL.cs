@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DAL.DAO;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace BLL
         public static void AddPosition(POSITION position)
         {
             PositionDAO.AddPosition(position);
+        }
+		
+		public static List<PositionDTO> GetPositions()
+        {
+            return PositionDAO.GetPositions();
         }
     }
 }
