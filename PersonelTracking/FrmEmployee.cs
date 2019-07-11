@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DAL;
+using DAL.DTO;
 
 namespace PersonelTracking
 {
@@ -45,6 +48,32 @@ namespace PersonelTracking
         private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = General.isNumber(e);
+        }
+		
+		EmployeeDTO dto = new EmployeeDTO();
+        private void FrmEmployee_Load(object sender, EventArgs e)
+        {
+            dto = EmployeeBLL.GetAll();
+            cmbDepartment.DataSource = dto.Departments;
+            cmbDepartment.DisplayMember = "DepartmentName";
+            cmbDepartment.ValueMember = "ID";
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.DisplayMember = "PositionName";
+            cmbPosition.ValueMember = "ID";
+            cmbDepartment.SelectedIndex = -1;
+            cmbPosition.SelectedIndex = -1;
+            combofull = true;
+        }
+		
+		bool combofull = false;
+        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (combofull)
+            {
+                int DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID == DepartmentID).ToList();
+            }
+            
         }
     }
 }
