@@ -75,5 +75,65 @@ namespace PersonelTracking
             }
             
         }
+		string fileName = "";
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Load(openFileDialog1.FileName);
+                txtImagePath.Text = openFileDialog1.FileName;
+                string Unique = Guid.NewGuid().ToString();
+                fileName = Unique + openFileDialog1.SafeFileName;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (txtUserNo.Text.Trim() == "")
+            {
+                MessageBox.Show("UserNo is empty");
+            }
+            else if (txtPassword.Text.Trim() == "")
+            {
+                MessageBox.Show("Password is empty");
+            }
+            else if (txtName.Text.Trim() == "")
+            {
+                MessageBox.Show("Name is empty");
+            }
+            else if (txtSurname.Text.Trim() == "")
+            {
+                MessageBox.Show("Surname is empty");
+            }
+            else if (txtSalary.Text.Trim() == "")
+            {
+                MessageBox.Show("Salary is empty");
+            }
+            else if (cmbDepartment.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a Department");
+            }
+            else if (cmbPosition.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a Position");
+            }
+            else
+            {
+                EMPLOYEE employee = new EMPLOYEE();
+                employee.UserNo = Convert.ToInt32(txtUserNo.Text);
+                employee.Password = txtPassword.Text;
+                employee.isAdmin = chAdmin.Checked;
+                employee.Name = txtName.Text;
+                employee.Surname = txtSurname.Text;
+                employee.Salary = Convert.ToInt32(txtSalary.Text);
+                employee.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                employee.PositionID = Convert.ToInt32(cmbPosition.SelectedValue);
+                employee.Address = txtAddress.Text;
+                employee.BirthDay = dateTimePicker1.Value;
+                employee.ImagePath = fileName;
+
+
+            }
+        }
     }
 }
