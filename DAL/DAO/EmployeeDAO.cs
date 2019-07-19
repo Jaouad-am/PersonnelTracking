@@ -8,5 +8,23 @@ namespace DAL.DAO
 {
     public class EmployeeDAO:EmployeeContext
     {
+		public static void AddEmployee(EMPLOYEE employee)
+        {
+            try
+            {
+                db.EMPLOYEEs.InsertOnSubmit(employee);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static List<EMPLOYEE> GetUsers(int v)
+        {
+            return db.EMPLOYEEs.Where(x => x.UserNo == v).ToList(); 
+        }
     }
 }

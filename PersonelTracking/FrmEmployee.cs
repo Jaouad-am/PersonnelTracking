@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BLL;
 using DAL;
 using DAL.DTO;
+using System.IO;
 
 namespace PersonelTracking
 {
@@ -20,9 +21,21 @@ namespace PersonelTracking
             InitializeComponent();
         }
 
+        bool isUnique = false;
         private void btnCheck_Click(object sender, EventArgs e)
         {
-
+            if (txtUserNo.Text.Trim() == "")
+            {
+                MessageBox.Show("UserNo is empty");
+            }
+            else
+            {
+                isUnique = EmployeeBLL.isUnique(Convert.ToInt32(txtUserNo.Text));
+                if (!isUnique)
+                    MessageBox.Show("this User No already exists!");
+                else
+                    MessageBox.Show("this User No is Available");
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -93,6 +106,10 @@ namespace PersonelTracking
             {
                 MessageBox.Show("UserNo is empty");
             }
+			else if (!EmployeeBLL.isUnique(Convert.ToInt32(txtUserNo.Text)))
+            {
+                MessageBox.Show("this User No already exists!");
+            }
             else if (txtPassword.Text.Trim() == "")
             {
                 MessageBox.Show("Password is empty");
@@ -131,6 +148,24 @@ namespace PersonelTracking
                 employee.Address = txtAddress.Text;
                 employee.BirthDay = dateTimePicker1.Value;
                 employee.ImagePath = fileName;
+                EmployeeBLL.AddEmployee(employee);
+                File.Copy(txtImagePath.Text, @"images\\" + fileName);
+                MessageBox.Show("Employee Added!");
+                txtUserNo.Clear();
+                txtPassword.Clear();
+                chAdmin.Checked = false;
+                txtName.Clear();
+                txtSurname.Clear();
+                txtSalary.Clear();
+                combofull = false;
+                cmbDepartment.SelectedIndex = -1;
+                cmbPosition.DataSource = dto.Positions;
+                cmbPosition.SelectedIndex = -1;
+                combofull = true;
+                txtAddress.Clear();
+                txtImagePath.Clear();
+                pictureBox1.Image = null;
+                dateTimePicker1.Value = DateTime.Today;
 
 
             }
