@@ -42,5 +42,15 @@ namespace PersonelTracking
             em.ShowDialog();
             this.Visible = true;
         }
+		EmployeeDTO dto = new EmployeeDTO();
+
+        private void FrmEmployeeList_Load(object sender, EventArgs e)
+        {
+            dto = EmployeeBLL.GetAll();
+            
+
+
+
+        }
     }
 }
