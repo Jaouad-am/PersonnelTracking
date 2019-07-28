@@ -80,5 +80,44 @@ namespace PersonelTracking
 
 
         }
+		private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (combofull)
+            {
+                cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID ==
+                Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<EmployeeDetailDTO> list = dto.Employees;
+            if (txtUserNo.Text.Trim() != "")
+                list = list.Where(x => x.UserNo == Convert.ToInt32(txtUserNo.Text)).ToList();
+            if (txtName.Text.Trim() != "")
+                list = list.Where(x => x.Name.ToLower().Contains(txtName.Text.ToLower())).ToList();
+            if (txtSurname.Text.Trim() != "")
+                list = list.Where(x => x.Surname.ToLower().Contains(txtSurname.Text.ToLower())).ToList();
+            if (cmbDepartment.SelectedIndex != -1)
+                list = list.Where(x => x.DepartmentID == Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            if (cmbPosition.SelectedIndex != -1)
+                list = list.Where(x => x.PositionID == Convert.ToInt32(cmbPosition.SelectedValue)).ToList();
+            dataGridView1.DataSource = list;
+
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtUserNo.Clear();
+            txtName.Clear();
+            txtSurname.Clear();
+            combofull = false;
+            cmbDepartment.SelectedValue = -1;
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.SelectedValue = -1;
+            combofull = true;
+            dataGridView1.DataSource = dto.Employees;
+        }
     }
 }
