@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.DTO;
+using BLL;
 
 namespace PersonelTracking
 {
@@ -25,6 +27,12 @@ namespace PersonelTracking
         private void btnSave_Click(object sender, EventArgs e)
         {
 
+        }
+		TaskDTO dto = new TaskDTO();
+        private void FrmTask_Load(object sender, EventArgs e)
+        {
+            cmbTaskState.Visible = false;
+            label9.Visible = false;
         }
     }
 }
