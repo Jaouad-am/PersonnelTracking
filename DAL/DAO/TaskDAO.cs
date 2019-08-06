@@ -8,5 +8,9 @@ namespace DAL.DAO
 {
   public  class TaskDAO:EmployeeContext
     {
+		public static List<TASKSTATE> GetTaskStates()
+        {
+            return db.TASKSTATEs.ToList();
+        }
     }
 }
