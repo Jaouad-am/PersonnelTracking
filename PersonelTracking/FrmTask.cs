@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL.DTO;
 using BLL;
+using DAL;
 
 namespace PersonelTracking
 {
@@ -24,8 +25,31 @@ namespace PersonelTracking
             this.Close();
         }
 
+        TASK task = new TASK();
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (task.EmployeeID == 0)
+
+                MessageBox.Show("Please select an Employee on Table");
+
+            else if (txtTitle.Text.Trim() == "")
+
+                MessageBox.Show("Task Title is Empty");
+
+            else if (txtContent.Text.Trim() == "")
+
+                MessageBox.Show("Task Content is Empty");
+            else
+                task.TaskTitle = txtTitle.Text;
+                task.TaskContent = txtContent.Text;
+                task.TaskStartDate = DateTime.Today;
+                task.TaskState = 1;
+                TaskBLL.AddTask(task);
+                MessageBox.Show("Task Added!");
+                txtTitle.Clear();
+                txtContent.Clear();
+                task = new TASK();
+
 
         }
 		TaskDTO dto = new TaskDTO();
@@ -82,6 +106,7 @@ namespace PersonelTracking
             txtUserNo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtSurname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+			task.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
         }
 
         private void cmbPosition_SelectedIndexChanged(object sender, EventArgs e)

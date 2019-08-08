@@ -17,5 +17,9 @@ namespace BLL
             taskdto.TaskStates = TaskDAO.GetTaskStates();
             return taskdto;
           }
+		   public static void AddTask(TASK task)
+        {
+            TaskDAO.AddTask(task);
+        }
     }
 }

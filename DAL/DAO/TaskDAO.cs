@@ -12,5 +12,18 @@ namespace DAL.DAO
         {
             return db.TASKSTATEs.ToList();
         }
+		public static void AddTask(TASK task)
+        {
+            try
+            {
+                db.TASKs.InsertOnSubmit(task);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
