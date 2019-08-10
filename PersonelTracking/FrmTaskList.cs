@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL;
+using DAL.DTO;
+using BLL;
 
 namespace PersonelTracking
 {
@@ -32,9 +35,10 @@ namespace PersonelTracking
             this.Close();
         }
 
+        TaskDTO dto = new TaskDTO();
         private void FrmTaskList_Load(object sender, EventArgs e)
         {
-            pnlForAdmin.Hide();
+            dto = TaskBLL.GetAll();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
