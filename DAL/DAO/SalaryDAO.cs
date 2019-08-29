@@ -12,5 +12,18 @@ namespace DAL.DAO
         {
             return db.MONTHs.ToList();
         }
+		 public static void AddSalary(SALARY salary)
+        {
+            try
+            {
+                db.SALARies.InsertOnSubmit(salary);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using DAL;
 using DAL.DTO;
 
 namespace PersonelTracking
@@ -69,7 +70,28 @@ namespace PersonelTracking
             txtName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtSurname.Text= dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtYear.Text = DateTime.Today.Year.ToString();
-            txtYear.Text= dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            txtSalary.Text= dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+			salary.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+        }
+		SALARY salary = new SALARY();
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (txtYear.Text.Trim() == "")
+                MessageBox.Show("Please Fill the Year");
+            else if (cmbMonth.SelectedIndex == -1)
+                MessageBox.Show("Please Select a Month");
+            else if (txtUserNo.Text.Trim() == "")
+                MessageBox.Show("Please Select an Employee from table");
+            else
+                salary.Year =Convert.ToInt32(txtYear.Text);
+                salary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
+                salary.Amount = Convert.ToInt32(txtSalary.Text);
+                SalaryBLL.AddSalary(salary);
+                MessageBox.Show("Salary was Added!");
+                salary = new SALARY();
+                cmbMonth.SelectedIndex = -1;    
+
+
         }
     }
 }
