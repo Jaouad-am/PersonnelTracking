@@ -41,9 +41,55 @@ namespace PersonelTracking
             this.Visible = true;
         }
 		SalaryDTO dto = new SalaryDTO();
-        private void FrmSalaryList_Load(object sender, EventArgs e)
+        private bool combofull=false;
+        void FillAllData()
         {
             dto = SalaryBLL.GetAll();
+            dataGridView1.DataSource = dto.Salaries;
+            combofull = false;
+            cmbDepartment.DataSource = dto.Departments;
+            cmbDepartment.DisplayMember = "DepartmentName";
+            cmbDepartment.ValueMember = "ID";
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.DisplayMember = "PositionName";
+            cmbPosition.ValueMember = "ID";
+            cmbDepartment.SelectedIndex = -1;
+            cmbPosition.SelectedIndex = -1;
+            if (dto.Departments.Count > 0)
+                combofull = true;
+            cmbMonth.DataSource = dto.Months;
+            cmbMonth.DisplayMember = "MonthName";
+            cmbMonth.ValueMember = "ID";
+            cmbMonth.SelectedIndex = -1;
+        }
+		 private void FrmSalaryList_Load(object sender, EventArgs e)
+        {
+            FillAllData();
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].HeaderText = "UserNo";
+            dataGridView1.Columns[2].HeaderText = "Name";
+            dataGridView1.Columns[3].HeaderText = "Surname";
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].HeaderText = "Month";
+            dataGridView1.Columns[9].HeaderText = "Year";
+            dataGridView1.Columns[10].HeaderText = "Salary";
+            dataGridView1.Columns[11].Visible = false;
+            dataGridView1.Columns[12].Visible = false;
+            dataGridView1.Columns[13].Visible = false;
+            
+
+        }
+
+        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (combofull)
+            {
+                cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID ==
+                Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            }
         }
     }
 }
