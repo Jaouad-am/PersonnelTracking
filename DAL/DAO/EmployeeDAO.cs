@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.DTO;
 
 namespace DAL.DAO
 {
@@ -69,6 +70,19 @@ namespace DAL.DAO
 
 
             return employeeList;
+        }
+		public static List<EMPLOYEE> GetEmployees(int v, string text)
+        {
+            try
+            {
+                List<EMPLOYEE> list = db.EMPLOYEEs.Where(x => x.UserNo == v && x.Password == text).ToList();
+                return list;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public static List<EMPLOYEE> GetUsers(int v)

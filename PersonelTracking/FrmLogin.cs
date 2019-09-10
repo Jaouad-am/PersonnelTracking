@@ -7,18 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DAL;
 
 namespace PersonelTracking
 {
-<<<<<<< HEAD
     public partial class FrmLogin : Form
     {
         public FrmLogin()
-=======
-    public partial class Form1 : Form
-    {
-        public Form1()
->>>>>>> dc0845b (Add project files.)
         {
             InitializeComponent();
         }
@@ -27,7 +23,6 @@ namespace PersonelTracking
         {
 
         }
-<<<<<<< HEAD
 
         private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -41,12 +36,22 @@ namespace PersonelTracking
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FrmMain m = new FrmMain();
-            this.Hide();
-            m.ShowDialog();
+            if (txtUserNo.Text.Trim() == "" || txtPassword.Text.Trim() == "")
+                MessageBox.Show("Please Fill User and Password!");
+            else
+            {
+                List<EMPLOYEE> employeelist = EmployeeBLL.GetEmployees(Convert.ToInt32(txtUserNo.Text), txtPassword.Text);
+                if (employeelist.Count == 0)
+                    MessageBox.Show("Please check your login infos");
+                else
+                {
+                    FrmMain main = new FrmMain();
+                    this.Hide();
+                    main.ShowDialog();
+                }
+            }
+            
             
         }
-=======
->>>>>>> dc0845b (Add project files.)
     }
 }
