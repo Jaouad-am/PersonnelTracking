@@ -45,6 +45,11 @@ namespace PersonelTracking
                     MessageBox.Show("Please check your login infos");
                 else
                 {
+                    EMPLOYEE employee = new EMPLOYEE();
+                    employee = employeelist.First();
+                    UserStatic.EmployeeID = employee.ID;
+                    UserStatic.UserNo = employee.UserNo;
+                    UserStatic.isAdmin = employee.isAdmin;
                     FrmMain main = new FrmMain();
                     this.Hide();
                     main.ShowDialog();
