@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL;
+using BLL;
 
 namespace PersonelTracking
 {
@@ -37,6 +39,26 @@ namespace PersonelTracking
         {
             PermissionDay = dpEnd.Value.Date - dpStart.Value.Date;
             txtDayAmount.Text = PermissionDay.TotalDays.ToString();
+        }
+		private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (txtDayAmount.Text.Trim() == "")
+                MessageBox.Show("Please select start and end date");
+            else if(Convert.ToInt32(txtDayAmount.Text)<=0)
+                MessageBox.Show("PermissionDay must be bigger than zero!");
+            else if (txtExplanation.Text.Trim()=="")
+                MessageBox.Show("Please fill the explanation field");
+            else
+            {
+                PERMISSION permission = new PERMISSION();
+                permission.EmployeeID = UserStatic.EmployeeID;
+                permission.PermissionState = 1;
+                permission.PermissionStartDate = dpStart.Value.Date;
+                permission.PermissionEndDate = dpEnd.Value.Date;
+                permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
+                PermissionBLL.AddPermission(permission);
+            }
+
         }
     }
 }
