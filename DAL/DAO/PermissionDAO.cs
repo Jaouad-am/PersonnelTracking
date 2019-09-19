@@ -8,5 +8,18 @@ namespace DAL.DAO
 {
    public class PermissionDAO:EmployeeContext
     {
+		public static void AddPermission(PERMISSION permission)
+        {
+            try
+            {
+                db.PERMISSIONs.InsertOnSubmit(permission);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

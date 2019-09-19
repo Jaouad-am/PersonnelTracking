@@ -40,6 +40,7 @@ namespace PersonelTracking
             PermissionDay = dpEnd.Value.Date - dpStart.Value.Date;
             txtDayAmount.Text = PermissionDay.TotalDays.ToString();
         }
+		
 		private void btnSave_Click(object sender, EventArgs e)
         {
             if (txtDayAmount.Text.Trim() == "")
@@ -56,7 +57,14 @@ namespace PersonelTracking
                 permission.PermissionStartDate = dpStart.Value.Date;
                 permission.PermissionEndDate = dpEnd.Value.Date;
                 permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
+				permission.PermissionExplanation = txtExplanation.Text;
                 PermissionBLL.AddPermission(permission);
+				MessageBox.Show("Permission was added!");
+                permission = new PERMISSION();
+                dpStart.Value = DateTime.Today;
+                dpEnd.Value = DateTime.Today;
+                txtDayAmount.Clear();
+                txtExplanation.Clear();
             }
 
         }
