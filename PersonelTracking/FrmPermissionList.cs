@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.DTO;
+using DAL;
+using BLL;
 
 namespace PersonelTracking
 {
@@ -51,6 +54,11 @@ namespace PersonelTracking
             this.Hide();
             pm.ShowDialog();
             this.Visible = true;
+        }
+		PermissionDTO dto = new PermissionDTO();
+        private void FrmPermissionList_Load(object sender, EventArgs e)
+        {
+            dto = PermissionBLL.GetAll();
         }
     }
 }
