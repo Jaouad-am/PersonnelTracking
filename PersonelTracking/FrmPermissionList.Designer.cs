@@ -36,7 +36,7 @@ namespace PersonelTracking
             this.label9 = new System.Windows.Forms.Label();
             this.txtDayAmount = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbDeliveryDate = new System.Windows.Forms.RadioButton();
+            this.rbEndDate = new System.Windows.Forms.RadioButton();
             this.rbStartDate = new System.Windows.Forms.RadioButton();
             this.dpEnd = new System.Windows.Forms.DateTimePicker();
             this.dpStart = new System.Windows.Forms.DateTimePicker();
@@ -62,6 +62,8 @@ namespace PersonelTracking
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,6 +84,8 @@ namespace PersonelTracking
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.cmbState);
+            this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.btnClear);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.label9);
@@ -107,6 +111,7 @@ namespace PersonelTracking
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
@@ -117,6 +122,7 @@ namespace PersonelTracking
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label9
             // 
@@ -139,7 +145,7 @@ namespace PersonelTracking
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rbDeliveryDate);
+            this.groupBox1.Controls.Add(this.rbEndDate);
             this.groupBox1.Controls.Add(this.rbStartDate);
             this.groupBox1.Location = new System.Drawing.Point(270, 31);
             this.groupBox1.Name = "groupBox1";
@@ -147,17 +153,17 @@ namespace PersonelTracking
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
-            // rbDeliveryDate
+            // rbEndDate
             // 
-            this.rbDeliveryDate.AutoSize = true;
-            this.rbDeliveryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbDeliveryDate.Location = new System.Drawing.Point(16, 56);
-            this.rbDeliveryDate.Name = "rbDeliveryDate";
-            this.rbDeliveryDate.Size = new System.Drawing.Size(119, 21);
-            this.rbDeliveryDate.TabIndex = 1;
-            this.rbDeliveryDate.TabStop = true;
-            this.rbDeliveryDate.Text = "DeliveryDate";
-            this.rbDeliveryDate.UseVisualStyleBackColor = true;
+            this.rbEndDate.AutoSize = true;
+            this.rbEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbEndDate.Location = new System.Drawing.Point(16, 56);
+            this.rbEndDate.Name = "rbEndDate";
+            this.rbEndDate.Size = new System.Drawing.Size(88, 21);
+            this.rbEndDate.TabIndex = 1;
+            this.rbEndDate.TabStop = true;
+            this.rbEndDate.Text = "EndDate";
+            this.rbEndDate.UseVisualStyleBackColor = true;
             // 
             // rbStartDate
             // 
@@ -409,6 +415,7 @@ namespace PersonelTracking
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 267);
@@ -416,6 +423,25 @@ namespace PersonelTracking
             this.dataGridView1.Size = new System.Drawing.Size(800, 235);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // cmbState
+            // 
+            this.cmbState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(133, 198);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(125, 28);
+            this.cmbState.TabIndex = 26;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(22, 201);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 20);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "State";
             // 
             // FrmPermissionList
             // 
@@ -428,6 +454,7 @@ namespace PersonelTracking
             this.Name = "FrmPermissionList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Permission List";
+            this.Load += new System.EventHandler(this.FrmPermissionList_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -467,7 +494,7 @@ namespace PersonelTracking
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtDayAmount;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rbDeliveryDate;
+        private System.Windows.Forms.RadioButton rbEndDate;
         private System.Windows.Forms.RadioButton rbStartDate;
         private System.Windows.Forms.DateTimePicker dpEnd;
         private System.Windows.Forms.DateTimePicker dpStart;
@@ -476,5 +503,7 @@ namespace PersonelTracking
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox cmbState;
+        private System.Windows.Forms.Label label10;
     }
 }

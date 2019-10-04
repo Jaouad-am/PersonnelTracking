@@ -46,6 +46,8 @@ namespace PersonelTracking
             this.Hide();
             pm.ShowDialog();
             this.Visible = true;
+			FillAllData();
+            CleanFilters();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -95,6 +97,54 @@ namespace PersonelTracking
             dataGridView1.Columns[12].HeaderText = "State";
             dataGridView1.Columns[13].Visible = false;
             
+        }
+		private void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<PermissionDetailDTO> list = dto.Permissions;
+            if (txtUserNo.Text.Trim() != "")
+                list = list.Where(x => x.UserNo == Convert.ToInt32(txtUserNo.Text)).ToList();
+            if (txtName.Text.Trim() != "")
+                list = list.Where(x => x.Name.ToLower().Contains(txtName.Text.ToLower())).ToList();
+            if (txtSurname.Text.Trim() != "")
+                list = list.Where(x => x.Surname.ToLower().Contains(txtSurname.Text.ToLower())).ToList();
+            if (cmbDepartment.SelectedIndex != -1)
+                list = list.Where(x => x.DepartmentID == Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            if (cmbPosition.SelectedIndex != -1)
+                list = list.Where(x => x.PositionID == Convert.ToInt32(cmbPosition.SelectedValue)).ToList();
+            if (rbStartDate.Checked)
+                list = list.Where(x => x.StartDate < Convert.ToDateTime(dpEnd.Value) &&
+                  x.StartDate > Convert.ToDateTime(dpStart.Value)).ToList();
+            if (rbEndDate.Checked)
+                list = list.Where(x => x.EndDate < Convert.ToDateTime(dpEnd.Value) &&
+                  x.EndDate > Convert.ToDateTime(dpStart.Value)).ToList();
+            if (cmbState.SelectedIndex != -1)
+                list = list.Where(x => x.State == Convert.ToInt32(cmbState.SelectedValue)).ToList();
+            if (txtDayAmount.Text.Trim() != "")
+                list = list.Where(x => x.PermissionDayAmount == Convert.ToInt32(txtDayAmount.Text)).ToList();
+
+            dataGridView1.DataSource = list;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            CleanFilters();
+        }
+
+        private void CleanFilters()
+        {
+            txtUserNo.Clear();
+            txtName.Clear();
+            txtSurname.Clear();
+            combofull = false;
+            cmbDepartment.SelectedValue = -1;
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.SelectedValue = -1;
+            combofull = true;
+            rbEndDate.Checked = false;
+            rbStartDate.Checked = false;
+            cmbState.SelectedIndex = -1;
+            txtDayAmount.Clear();
+            dataGridView1.DataSource = dto.Permissions;
         }
     }
 }
