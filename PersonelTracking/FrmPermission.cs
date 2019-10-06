@@ -24,6 +24,7 @@ namespace PersonelTracking
             this.Close();
         }
 		TimeSpan PermissionDay;
+		bool isUpdate=false;
         private void FrmPermission_Load(object sender, EventArgs e)
         {
             txtUserNo.Text = UserStatic.UserNo.ToString();

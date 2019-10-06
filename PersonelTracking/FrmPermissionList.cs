@@ -146,5 +146,10 @@ namespace PersonelTracking
             txtDayAmount.Clear();
             dataGridView1.DataSource = dto.Permissions;
         }
+		PermissionDetailDTO detail = new PermissionDetailDTO();
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            detail.permissionID=Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[14].Value);
+        }
     }
 }

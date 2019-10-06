@@ -64,6 +64,7 @@ namespace DAL.DAO
                 dto.State = item.stateID;
                 dto.StateName = item.StateName;
                 dto.Explanation = item.explanation;
+				dto.PermissionID = item.PermissionID;
                 permissionlist.Add(dto);
             }
                   
