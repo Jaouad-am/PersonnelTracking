@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
+using DAL.DTO;
 using BLL;
 
 namespace PersonelTracking
@@ -24,10 +25,19 @@ namespace PersonelTracking
             this.Close();
         }
 		TimeSpan PermissionDay;
-		bool isUpdate=false;
+		public bool isUpdate=false;
+		public PermissionDetailDTO detail = new PermissionDetailDTO();
         private void FrmPermission_Load(object sender, EventArgs e)
         {
             txtUserNo.Text = UserStatic.UserNo.ToString();
+			if(isUpdate)
+            {
+                dpStart.Value = detail.StartDate;
+                dpEnd.Value = detail.EndDate;
+                txtDayAmount.Text = detail.PermissionDayAmount.ToString();
+                txtExplanation.Text = detail.Explanation;
+                txtUserNo.Text = detail.UserNo.ToString();
+            }
         }
 
         private void dpStart_ValueChanged(object sender, EventArgs e)
