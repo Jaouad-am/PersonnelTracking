@@ -60,23 +60,39 @@ namespace PersonelTracking
                 MessageBox.Show("PermissionDay must be bigger than zero!");
             else if (txtExplanation.Text.Trim()=="")
                 MessageBox.Show("Please fill the explanation field");
-            else
-            {
-                PERMISSION permission = new PERMISSION();
-                permission.EmployeeID = UserStatic.EmployeeID;
-                permission.PermissionState = 1;
-                permission.PermissionStartDate = dpStart.Value.Date;
-                permission.PermissionEndDate = dpEnd.Value.Date;
-                permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
-				permission.PermissionExplanation = txtExplanation.Text;
-                PermissionBLL.AddPermission(permission);
-				MessageBox.Show("Permission was added!");
-                permission = new PERMISSION();
-                dpStart.Value = DateTime.Today;
-                dpEnd.Value = DateTime.Today;
-                txtDayAmount.Clear();
-                txtExplanation.Clear();
-            }
+            PERMISSION permission = new PERMISSION();
+                if (!isUpdate)
+                {
+                    
+                    permission.EmployeeID = UserStatic.EmployeeID;
+                    permission.PermissionState = 1;
+                    permission.PermissionStartDate = dpStart.Value.Date;
+                    permission.PermissionEndDate = dpEnd.Value.Date;
+                    permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
+                    permission.PermissionExplanation = txtExplanation.Text;
+                    PermissionBLL.AddPermission(permission);
+                    MessageBox.Show("Permission was added!");
+                    permission = new PERMISSION();
+                    dpStart.Value = DateTime.Today;
+                    dpEnd.Value = DateTime.Today;
+                    txtDayAmount.Clear();
+                    txtExplanation.Clear();
+                }
+                else if (isUpdate)
+                {
+                    DialogResult result = MessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        permission.ID = detail.PermissionID;
+                        permission.PermissionExplanation = txtExplanation.Text;
+                        permission.PermissionStartDate = dpStart.Value;
+                        permission.PermissionEndDate = dpEnd.Value;
+                        permission.PermissionDay = Convert.ToInt32(txtDayAmount.Text);
+                        PermissionBLL.UpdatePermission(permission);
+                        MessageBox.Show("Permission Updated ;)");
+                        this.Close();
+                    }
+                }
 
         }
     }

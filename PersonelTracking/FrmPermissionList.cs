@@ -105,6 +105,7 @@ namespace PersonelTracking
             dataGridView1.Columns[11].HeaderText = "Day Amount";
             dataGridView1.Columns[12].HeaderText = "State";
             dataGridView1.Columns[13].Visible = false;
+			dataGridView1.Columns[14].Visible = false;
             
         }
 		private void btnSearch_Click(object sender, EventArgs e)
@@ -162,7 +163,7 @@ namespace PersonelTracking
 			detail.StartDate= Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
             detail.EndDate= Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
             detail.Explanation= dataGridView1.Rows[e.RowIndex].Cells[13].Value.ToString();
-            detail.UserNo= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
+            detail.UserNo= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
             detail.State= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[12].Value);
             detail.PermissionDayAmount= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
         }
