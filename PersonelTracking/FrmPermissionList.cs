@@ -167,5 +167,20 @@ namespace PersonelTracking
             detail.State= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[12].Value);
             detail.PermissionDayAmount= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
         }
+		private void btnApprove_Click(object sender, EventArgs e)
+        {
+            PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Approved);
+            MessageBox.Show("Approved!");
+            FillAllData();
+            CleanFilters();
+        }
+
+        private void btnDisapprove_Click(object sender, EventArgs e)
+        {
+            PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Disapproved);
+            MessageBox.Show("Disapproved!");
+            FillAllData();
+            CleanFilters();
+        }
     }
 }
