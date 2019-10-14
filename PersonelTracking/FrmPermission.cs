@@ -24,13 +24,13 @@ namespace PersonelTracking
         {
             this.Close();
         }
-		TimeSpan PermissionDay;
-		public bool isUpdate=false;
-		public PermissionDetailDTO detail = new PermissionDetailDTO();
+        TimeSpan PermissionDay;
+        public bool isUpdate = false;
+        public PermissionDetailDTO detail = new PermissionDetailDTO();
         private void FrmPermission_Load(object sender, EventArgs e)
         {
             txtUserNo.Text = UserStatic.UserNo.ToString();
-			if(isUpdate)
+            if(isUpdate)
             {
                 dpStart.Value = detail.StartDate;
                 dpEnd.Value = detail.EndDate;
@@ -51,8 +51,8 @@ namespace PersonelTracking
             PermissionDay = dpEnd.Value.Date - dpStart.Value.Date;
             txtDayAmount.Text = PermissionDay.TotalDays.ToString();
         }
-		
-		private void btnSave_Click(object sender, EventArgs e)
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
             if (txtDayAmount.Text.Trim() == "")
                 MessageBox.Show("Please select start and end date");
@@ -60,7 +60,9 @@ namespace PersonelTracking
                 MessageBox.Show("PermissionDay must be bigger than zero!");
             else if (txtExplanation.Text.Trim()=="")
                 MessageBox.Show("Please fill the explanation field");
-            PERMISSION permission = new PERMISSION();
+            else
+            {
+                PERMISSION permission = new PERMISSION();
                 if (!isUpdate)
                 {
                     
@@ -93,6 +95,7 @@ namespace PersonelTracking
                         this.Close();
                     }
                 }
+            }
 
         }
     }

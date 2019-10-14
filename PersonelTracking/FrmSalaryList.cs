@@ -31,10 +31,11 @@ namespace PersonelTracking
             this.Hide();
             sl.ShowDialog();
             this.Visible = true;
-			FillAllData();
+            FillAllData();
             CleanFilters();
         }
-		private void CleanFilters()
+
+        private void CleanFilters()
         {
             txtUserNo.Clear();
             txtName.Clear();
@@ -60,7 +61,7 @@ namespace PersonelTracking
             sl.ShowDialog();
             this.Visible = true;
         }
-		SalaryDTO dto = new SalaryDTO();
+        SalaryDTO dto = new SalaryDTO();
         private bool combofull=false;
         void FillAllData()
         {
@@ -81,8 +82,10 @@ namespace PersonelTracking
             cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
+
         }
-		 private void FrmSalaryList_Load(object sender, EventArgs e)
+
+        private void FrmSalaryList_Load(object sender, EventArgs e)
         {
             FillAllData();
             dataGridView1.Columns[0].Visible = false;
@@ -111,7 +114,8 @@ namespace PersonelTracking
                 Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
             }
         }
-		private void btnSearch_Click(object sender, EventArgs e)
+
+        private void btnSearch_Click(object sender, EventArgs e)
         {
 
             List<SalaryDetailDTO> list = dto.Salaries;

@@ -70,6 +70,7 @@ namespace PersonelTracking
             this.dpEnd.Name = "dpEnd";
             this.dpEnd.Size = new System.Drawing.Size(125, 23);
             this.dpEnd.TabIndex = 1;
+            this.dpEnd.ValueChanged += new System.EventHandler(this.dpEnd_ValueChanged);
             // 
             // dpStart
             // 
@@ -79,6 +80,7 @@ namespace PersonelTracking
             this.dpStart.Name = "dpStart";
             this.dpStart.Size = new System.Drawing.Size(125, 23);
             this.dpStart.TabIndex = 0;
+            this.dpStart.ValueChanged += new System.EventHandler(this.dpStart_ValueChanged);
             // 
             // label8
             // 
@@ -158,6 +160,7 @@ namespace PersonelTracking
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmPermission
             // 
@@ -179,6 +182,7 @@ namespace PersonelTracking
             this.Name = "FrmPermission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Permission";
+            this.Load += new System.EventHandler(this.FrmPermission_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
-using DAL;
 
 namespace PersonelTracking
 {
@@ -23,7 +23,7 @@ namespace PersonelTracking
         {
             this.Close();
         }
-		List<DEPARTMENT> DepartmentList = new List<DEPARTMENT>(); 
+        List<DEPARTMENT> DepartmentList = new List<DEPARTMENT>(); 
         private void FrmPosition_Load(object sender, EventArgs e)
         {
             DepartmentList = DepartmentBLL.GetDepartments();

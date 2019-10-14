@@ -9,13 +9,14 @@ using DAL.DTO;
 
 namespace BLL
 {
-   public class PermissionBLL
+    public class PermissionBLL
     {
-		public static void AddPermission(PERMISSION permission)
+        public static void AddPermission(PERMISSION permission)
         {
             PermissionDAO.AddPermission(permission);
         }
-		public static PermissionDTO GetAll()
+
+        public static PermissionDTO GetAll()
         {
             PermissionDTO dto = new PermissionDTO();
             dto.Departments = DepartmentDAO.GetDepartments();
@@ -24,7 +25,8 @@ namespace BLL
             dto.Permissions = PermissionDAO.GetPermissions();
             return dto;
         }
-		        public static void UpdatePermission(PERMISSION permission)
+
+        public static void UpdatePermission(PERMISSION permission)
         {
             PermissionDAO.UpdatePermission(permission);
         }

@@ -15,8 +15,8 @@ namespace BLL
         {
             PositionDAO.AddPosition(position);
         }
-		
-		public static List<PositionDTO> GetPositions()
+
+        public static List<PositionDTO> GetPositions()
         {
             return PositionDAO.GetPositions();
         }

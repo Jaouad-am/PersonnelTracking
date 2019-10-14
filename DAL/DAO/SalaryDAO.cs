@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace DAL.DAO
 {
-   public class SalaryDAO:EmployeeContext
+    public class SalaryDAO : EmployeeContext
     {
-		public static List<MONTH> GetMonths()
+        public static List<MONTH> GetMonths()
         {
             return db.MONTHs.ToList();
         }
-		 public static void AddSalary(SALARY salary)
+
+        public static void AddSalary(SALARY salary)
         {
             try
             {
@@ -25,7 +27,8 @@ namespace DAL.DAO
                 throw ex;
             }
         }
-		public static List<SalaryDetailDTO> GetSalaries()
+
+        public static List<SalaryDetailDTO> GetSalaries()
         {
             List<SalaryDetailDTO> salaryList = new List<SalaryDetailDTO>();
             var list = (from s in db.SALARies

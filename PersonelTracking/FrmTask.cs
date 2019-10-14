@@ -24,7 +24,6 @@ namespace PersonelTracking
         {
             this.Close();
         }
-
         TASK task = new TASK();
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -52,13 +51,15 @@ namespace PersonelTracking
 
 
         }
-		TaskDTO dto = new TaskDTO();
-		private bool combofull = false;
+        TaskDTO dto = new TaskDTO();
+        private bool combofull = false;
+        public bool isUpdate = false;
+        public TaskDetailDTO detail = new TaskDetailDTO();
         private void FrmTask_Load(object sender, EventArgs e)
         {
             cmbTaskState.Visible = false;
             label9.Visible = false;
-			dto = TaskBLL.GetAll();
+            dto = TaskBLL.GetAll();
             dataGridView1.DataSource = dto.Employees;
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].HeaderText = "UserNo";
@@ -89,7 +90,8 @@ namespace PersonelTracking
             cmbTaskState.ValueMember = "ID";
             cmbTaskState.SelectedIndex = -1;
         }
-		private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (combofull)
             {
@@ -106,14 +108,14 @@ namespace PersonelTracking
             txtUserNo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtSurname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-			task.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            task.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
         }
 
         private void cmbPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (combofull)
             {
-           
+
                 List<EmployeeDetailDTO> list = dto.Employees;
                 dataGridView1.DataSource = list.Where(x => x.PositionID ==
                 Convert.ToInt32(cmbPosition.SelectedValue)).ToList();

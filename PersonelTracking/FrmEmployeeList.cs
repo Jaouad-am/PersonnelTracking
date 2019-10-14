@@ -11,6 +11,7 @@ using BLL;
 using DAL;
 using DAL.DTO;
 
+
 namespace PersonelTracking
 {
     public partial class FrmEmployeeList : Form
@@ -45,7 +46,7 @@ namespace PersonelTracking
             em.ShowDialog();
             this.Visible = true;
         }
-		EmployeeDTO dto = new EmployeeDTO();
+        EmployeeDTO dto = new EmployeeDTO();
         private bool combofull = false;
 
         private void FrmEmployeeList_Load(object sender, EventArgs e)
@@ -80,7 +81,8 @@ namespace PersonelTracking
 
 
         }
-		private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (combofull)
             {

@@ -1,15 +1,15 @@
-﻿using System;
+﻿using DAL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.DTO;
 
 namespace DAL.DAO
 {
-    public class EmployeeDAO:EmployeeContext
+    public class EmployeeDAO : EmployeeContext
     {
-		public static void AddEmployee(EMPLOYEE employee)
+        public static void AddEmployee(EMPLOYEE employee)
         {
             try
             {
@@ -22,7 +22,8 @@ namespace DAL.DAO
                 throw ex;
             }
         }
-		public static List<EmployeeDetailDTO> GetEmployees()
+
+        public static List<EmployeeDetailDTO> GetEmployees()
         {
             List<EmployeeDetailDTO> employeeList = new List<EmployeeDetailDTO>();
             var list = (from e in db.EMPLOYEEs
@@ -71,7 +72,8 @@ namespace DAL.DAO
 
             return employeeList;
         }
-		public static List<EMPLOYEE> GetEmployees(int v, string text)
+
+        public static List<EMPLOYEE> GetEmployees(int v, string text)
         {
             try
             {

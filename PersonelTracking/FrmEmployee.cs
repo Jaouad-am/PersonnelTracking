@@ -20,7 +20,6 @@ namespace PersonelTracking
         {
             InitializeComponent();
         }
-
         bool isUnique = false;
         private void btnCheck_Click(object sender, EventArgs e)
         {
@@ -47,23 +46,7 @@ namespace PersonelTracking
         {
             this.Close();
         }
-
-        private void FrmEmployee_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = General.isNumber(e);
-        }
-
-        private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = General.isNumber(e);
-        }
-		
-		EmployeeDTO dto = new EmployeeDTO();
+        EmployeeDTO dto = new EmployeeDTO();
         private void FrmEmployee_Load(object sender, EventArgs e)
         {
             dto = EmployeeBLL.GetAll();
@@ -77,8 +60,17 @@ namespace PersonelTracking
             cmbPosition.SelectedIndex = -1;
             combofull = true;
         }
-		
-		bool combofull = false;
+
+        private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = General.isNumber(e);
+        }
+
+        private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = General.isNumber(e);
+        }
+        bool combofull = false;
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (combofull)
@@ -88,7 +80,7 @@ namespace PersonelTracking
             }
             
         }
-		string fileName = "";
+        string fileName = "";
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -106,7 +98,7 @@ namespace PersonelTracking
             {
                 MessageBox.Show("UserNo is empty");
             }
-			else if (!EmployeeBLL.isUnique(Convert.ToInt32(txtUserNo.Text)))
+            else if (!EmployeeBLL.isUnique(Convert.ToInt32(txtUserNo.Text)))
             {
                 MessageBox.Show("this User No already exists!");
             }
@@ -165,7 +157,8 @@ namespace PersonelTracking
                 txtAddress.Clear();
                 txtImagePath.Clear();
                 pictureBox1.Image = null;
-                dateTimePicker1.Value = DateTime.Today;
+                dateTimePicker1.Value = DateTime.Today; 
+
 
 
             }

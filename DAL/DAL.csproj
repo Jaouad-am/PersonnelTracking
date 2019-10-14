@@ -33,10 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-<<<<<<< HEAD
     <Reference Include="System.Data.Linq" />
-=======
->>>>>>> dc0845b (Add project files.)
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,9 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="DAO\DepartmentDAO.cs" />
     <Compile Include="DAO\EmployeeContext.cs" />
+    <Compile Include="DAO\EmployeeDAO.cs" />
+    <Compile Include="DAO\PermissionDAO.cs" />
+    <Compile Include="DAO\PositionDAO.cs" />
+    <Compile Include="DAO\SalaryDAO.cs" />
+    <Compile Include="DAO\TaskDAO.cs" />
+    <Compile Include="DTO\EmployeeDetailDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\PermissionDetailDTO.cs" />
+    <Compile Include="DTO\PermissionDTO.cs" />
+    <Compile Include="DTO\PermissionStates.cs" />
+    <Compile Include="DTO\PositionDTO.cs" />
+    <Compile Include="DTO\SalaryDetailDTO.cs" />
+    <Compile Include="DTO\SalaryDTO.cs" />
+    <Compile Include="DTO\TaskDetailDTO.cs" />
+    <Compile Include="DTO\TaskDTO.cs" />
     <Compile Include="EmployeeDataClass.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -60,9 +71,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="EmployeeDataClass.dbml">
@@ -81,13 +90,5 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-=======
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAO\" />
-    <Folder Include="DTO\" />
-  </ItemGroup>
->>>>>>> dc0845b (Add project files.)
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

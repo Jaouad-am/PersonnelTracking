@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
 using DAL.DAO;
+using DAL;
 
 namespace BLL
 {
@@ -16,11 +16,11 @@ namespace BLL
             EmployeeDTO dto = new EmployeeDTO();
             dto.Departments = DepartmentDAO.GetDepartments();
             dto.Positions = PositionDAO.GetPositions();
-			dto.Employees = EmployeeDAO.GetEmployees();
+            dto.Employees = EmployeeDAO.GetEmployees();
             return dto;
         }
-		
-		public static void AddEmployee(EMPLOYEE employee)
+
+        public static void AddEmployee(EMPLOYEE employee)
         {
             EmployeeDAO.AddEmployee(employee);
         }
@@ -34,7 +34,7 @@ namespace BLL
                 return true;
             
         }
-		
+
         public static List<EMPLOYEE> GetEmployees(int v, string text)
         {
             return EmployeeDAO.GetEmployees(v, text);

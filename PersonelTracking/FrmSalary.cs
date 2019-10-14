@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using DAL.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
-using DAL;
-using DAL.DTO;
 
 namespace PersonelTracking
 {
@@ -20,7 +20,7 @@ namespace PersonelTracking
             InitializeComponent();
         }
 
-         SalaryDTO dto = new SalaryDTO();
+        SalaryDTO dto = new SalaryDTO();
         private bool combofull=false;
 
         private void FrmSalary_Load(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace PersonelTracking
             if(dto.Departments.Count>0)
             combofull = true;
             cmbMonth.DataSource = dto.Months;
-            cmbMonth.DisplayMember = "Month Name";
+            cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
       
@@ -64,16 +64,17 @@ namespace PersonelTracking
         {
             this.Close();
         }
-		private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             txtUserNo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtSurname.Text= dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtYear.Text = DateTime.Today.Year.ToString();
             txtSalary.Text= dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
-			salary.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            salary.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
         }
-		SALARY salary = new SALARY();
+        SALARY salary = new SALARY();
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (txtYear.Text.Trim() == "")

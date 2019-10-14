@@ -21,8 +21,8 @@ namespace DAL.DAO
             }
             
         }
-		
-		public static List<DEPARTMENT> GetDepartments()
+
+        public static List<DEPARTMENT> GetDepartments()
         {
             return db.DEPARTMENTs.ToList();
         }

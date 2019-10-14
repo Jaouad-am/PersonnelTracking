@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL;
-using DAL;
 using DAL.DTO;
 
 namespace PersonelTracking
@@ -31,7 +31,7 @@ namespace PersonelTracking
             this.Hide();
             ps.ShowDialog();
             this.Visible = true;
-			FillGrid();
+            FillGrid();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace PersonelTracking
             ps.ShowDialog();
             this.Visible = true;
         }
-		List<PositionDTO> PositionList = new List<PositionDTO>();
+        List<PositionDTO> PositionList = new List<PositionDTO>();
         void FillGrid()
         {
             PositionList = PositionBLL.GetPositions();

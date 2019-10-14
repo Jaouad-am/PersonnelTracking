@@ -1,15 +1,15 @@
-﻿using System;
+﻿using DAL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.DTO;
 
 namespace DAL.DAO
 {
-   public class PermissionDAO:EmployeeContext
+    public class PermissionDAO : EmployeeContext
     {
-		public static void AddPermission(PERMISSION permission)
+        public static void AddPermission(PERMISSION permission)
         {
             try
             {
@@ -22,7 +22,8 @@ namespace DAL.DAO
                 throw ex;
             }
         }
-		public static List<PERMSSIONSTATE> GetStates()
+
+        public static List<PERMSSIONSTATE> GetStates()
         {
             return db.PERMSSIONSTATEs.ToList();
         }
@@ -64,13 +65,14 @@ namespace DAL.DAO
                 dto.State = item.stateID;
                 dto.StateName = item.StateName;
                 dto.Explanation = item.explanation;
-				dto.PermissionID = item.PermissionID;
+                dto.PermissionID = item.PermissionID;
                 permissionlist.Add(dto);
             }
                   
             return permissionlist;
         }
-		public static void UpdatePermission(int permissionID, int approved)
+
+        public static void UpdatePermission(int permissionID, int approved)
         {
             try
             {
@@ -84,7 +86,8 @@ namespace DAL.DAO
                 throw ex;
             }
         }
-		public static void UpdatePermission(PERMISSION permission)
+
+        public static void UpdatePermission(PERMISSION permission)
         {
             try
             {
@@ -93,7 +96,7 @@ namespace DAL.DAO
                 pr.PermissionEndDate = permission.PermissionEndDate;
                 pr.PermissionExplanation = permission.PermissionExplanation;
                 pr.PermissionDay = permission.PermissionDay;
-                db.SubmitChanges();
+                db.SubmitChanges(); 
             }
             catch (Exception ex)
             {

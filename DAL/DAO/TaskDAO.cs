@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace DAL.DAO
 {
-  public  class TaskDAO:EmployeeContext
+    public class TaskDAO : EmployeeContext
     {
-		public static List<TASKSTATE> GetTaskStates()
+        public static List<TASKSTATE> GetTaskStates()
         {
             return db.TASKSTATEs.ToList();
         }
-		public static void AddTask(TASK task)
+
+        public static void AddTask(TASK task)
         {
             try
             {
@@ -25,7 +27,8 @@ namespace DAL.DAO
                 throw ex;
             }
         }
-		public static List<TaskDetailDTO> GetTasks()
+
+        public static List<TaskDetailDTO> GetTasks()
         {
             List<TaskDetailDTO> tasklist = new List<TaskDetailDTO>();
 

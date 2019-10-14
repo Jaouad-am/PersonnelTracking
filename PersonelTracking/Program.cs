@@ -16,11 +16,7 @@ namespace PersonelTracking
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
             Application.Run(new FrmLogin());
-=======
-            Application.Run(new Form1());
->>>>>>> dc0845b (Add project files.)
         }
     }
 }
