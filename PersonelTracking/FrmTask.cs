@@ -39,15 +39,37 @@ namespace PersonelTracking
 
                 MessageBox.Show("Task Content is Empty");
             else
-                task.TaskTitle = txtTitle.Text;
-                task.TaskContent = txtContent.Text;
-                task.TaskStartDate = DateTime.Today;
-                task.TaskState = 1;
-                TaskBLL.AddTask(task);
-                MessageBox.Show("Task Added!");
-                txtTitle.Clear();
-                txtContent.Clear();
-                task = new TASK();
+            {
+                if (!isUpdate)
+                {
+                    task.TaskTitle = txtTitle.Text;
+                    task.TaskContent = txtContent.Text;
+                    task.TaskStartDate = DateTime.Today;
+                    task.TaskState = 1;
+                    TaskBLL.AddTask(task);
+                    MessageBox.Show("Task Added!");
+                    txtTitle.Clear();
+                    txtContent.Clear();
+                    task = new TASK();
+                }
+                else if (isUpdate)
+                {
+                    DialogResult result = MessageBox.Show("Are you sure ?", "Warning!!", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        TASK update = new TASK();
+                        if (Convert.ToInt32(txtUserNo.Text) != detail.UserNo)
+                            update.EmployeeID = task.EmployeeID;
+                        else
+                            update.EmployeeID = detail.EmployeeID;
+                        update.TaskTitle = detail.Title;
+                        update.TaskContent = detail.Content;
+                        update.TaskState = Convert.ToInt32(cmbTaskState.SelectedValue);
+                        TaskBLL.UpdateTask(update);
+                    }
+                }
+                
+            }
 
 
         }
@@ -85,10 +107,20 @@ namespace PersonelTracking
             cmbDepartment.SelectedIndex = -1;
             cmbPosition.SelectedIndex = -1;
             combofull = true;
-            cmbTaskState.DataSource = dto.TaskStates;
-            cmbTaskState.DisplayMember = "StateName";
-            cmbTaskState.ValueMember = "ID";
-            cmbTaskState.SelectedIndex = -1;
+            
+            if (isUpdate)
+            {
+                txtName.Text = detail.Name;
+                txtUserNo.Text = detail.UserNo.ToString();
+                txtSurname.Text = detail.Surname;
+                txtTitle.Text = detail.Title;
+                txtContent.Text = detail.Content;
+                cmbTaskState.DataSource = dto.TaskStates;
+                cmbTaskState.DisplayMember = "StateName";
+                cmbTaskState.ValueMember = "ID";
+                cmbTaskState.SelectedValue = detail.TaskStateID;
+
+            }
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
