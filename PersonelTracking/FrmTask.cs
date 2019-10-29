@@ -58,14 +58,17 @@ namespace PersonelTracking
                     if (result == DialogResult.Yes)
                     {
                         TASK update = new TASK();
+                        update.ID = detail.TaskID;
                         if (Convert.ToInt32(txtUserNo.Text) != detail.UserNo)
                             update.EmployeeID = task.EmployeeID;
                         else
                             update.EmployeeID = detail.EmployeeID;
-                        update.TaskTitle = detail.Title;
-                        update.TaskContent = detail.Content;
+                        update.TaskTitle = txtTitle.Text;
+                        update.TaskContent = txtContent.Text;
                         update.TaskState = Convert.ToInt32(cmbTaskState.SelectedValue);
                         TaskBLL.UpdateTask(update);
+                        MessageBox.Show("Task Updated");
+                        this.Close();
                     }
                 }
                 
@@ -110,6 +113,8 @@ namespace PersonelTracking
             
             if (isUpdate)
             {
+                cmbTaskState.Visible = true;
+                label9.Visible = true;
                 txtName.Text = detail.Name;
                 txtUserNo.Text = detail.UserNo.ToString();
                 txtSurname.Text = detail.Surname;
