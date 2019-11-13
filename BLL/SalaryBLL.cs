@@ -26,5 +26,10 @@ namespace BLL
         {
              SalaryDAO.AddSalary(salary);
         }
+
+        public static void UpdateSalary(SALARY salary, bool control)
+        {
+            SalaryDAO.UpdateSalary(salary);
+        }
     }
 }
