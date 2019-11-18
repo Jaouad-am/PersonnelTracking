@@ -85,10 +85,13 @@ namespace PersonelTracking
             txtYear.Text = DateTime.Today.Year.ToString();
             txtSalary.Text= dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
             salary.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            oldsalary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
         }
         SALARY salary = new SALARY();
+        int oldsalary = 0;
         private void btnSave_Click(object sender, EventArgs e)
         {
+            bool control = false;
             if (txtYear.Text.Trim() == "")
                 MessageBox.Show("Please Fill the Year");
             else if (cmbMonth.SelectedIndex == -1)
@@ -96,7 +99,8 @@ namespace PersonelTracking
             else if (txtSalary.Text.Trim() == "")
                 MessageBox.Show("salary is empty");
             else
-                if (!isUpdate)
+                
+            if (!isUpdate)
             {
                 if (salary.EmployeeID == 0)
                     MessageBox.Show("Please Select an Employee from table");
@@ -105,7 +109,9 @@ namespace PersonelTracking
                     salary.Year = Convert.ToInt32(txtYear.Text);
                     salary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
                     salary.Amount = Convert.ToInt32(txtSalary.Text);
-                    SalaryBLL.AddSalary(salary);
+                    if (salary.Amount > oldsalary)
+                        control = true;
+                    SalaryBLL.AddSalary(salary, control);
                     MessageBox.Show("Salary was Added!");
                     salary = new SALARY();
                     cmbMonth.SelectedIndex = -1;
@@ -124,10 +130,12 @@ namespace PersonelTracking
                     salary.Year = Convert.ToInt32(txtYear.Text);
                     salary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
                     salary.Amount = Convert.ToInt32(txtSalary.Text);
-                    bool control = false;
+                    
                     if(salary.Amount>detail.OldSalary)
                         control=true;
                     SalaryBLL.UpdateSalary(salary, control);
+                    MessageBox.Show("Salary Updated!");
+                    this.Close();
 
                 }
             }
