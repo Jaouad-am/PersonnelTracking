@@ -41,14 +41,24 @@ namespace PersonelTracking
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmEmployee em = new FrmEmployee();
-            this.Hide();
-            em.ShowDialog();
-            this.Visible = true;
+            if (detail.EmployeeID == 0)
+            {
+                MessageBox.Show("please select en employee from table");
+            }
+            else
+            {
+                FrmEmployee em = new FrmEmployee();
+                em.isUpdate = true;
+                em.detail = detail;
+                this.Hide();
+                em.ShowDialog();
+                this.Visible = true;
+            }
+            
         }
         EmployeeDTO dto = new EmployeeDTO();
         private bool combofull = false;
-
+        EmployeeDetailDTO detail = new EmployeeDetailDTO();
         private void FrmEmployeeList_Load(object sender, EventArgs e)
         {
             dto = EmployeeBLL.GetAll();
@@ -120,6 +130,22 @@ namespace PersonelTracking
             cmbPosition.SelectedValue = -1;
             combofull = true;
             dataGridView1.DataSource = dto.Employees;
+        }
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            detail.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            detail.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            detail.Password = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            detail.ImagePath = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            detail.Address = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
+            detail.isAdmin = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
+            detail.Bhirthday = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
+            detail.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            detail.DepartmentID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[6].Value);
+            detail.PositionID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[7].Value);
+            detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            detail.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
         }
     }
 }

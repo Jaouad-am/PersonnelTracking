@@ -47,6 +47,8 @@ namespace PersonelTracking
             this.Close();
         }
         EmployeeDTO dto = new EmployeeDTO();
+        public bool isUpdate = false;
+        public EmployeeDetailDTO detail = new EmployeeDetailDTO();
         private void FrmEmployee_Load(object sender, EventArgs e)
         {
             dto = EmployeeBLL.GetAll();
