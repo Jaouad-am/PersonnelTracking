@@ -37,6 +37,8 @@ namespace PersonelTracking
             this.Hide();
             em.ShowDialog();
             this.Visible = true;
+            FillAllData();
+            CleanFilters();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -53,13 +55,15 @@ namespace PersonelTracking
                 this.Hide();
                 em.ShowDialog();
                 this.Visible = true;
+                FillAllData();
+                CleanFilters();
             }
             
         }
         EmployeeDTO dto = new EmployeeDTO();
         private bool combofull = false;
         EmployeeDetailDTO detail = new EmployeeDetailDTO();
-        private void FrmEmployeeList_Load(object sender, EventArgs e)
+        void FillAllData()
         {
             dto = EmployeeBLL.GetAll();
             dataGridView1.DataSource = dto.Employees;
@@ -87,7 +91,11 @@ namespace PersonelTracking
             cmbDepartment.SelectedIndex = -1;
             cmbPosition.SelectedIndex = -1;
             combofull = true;
+        }
+        private void FrmEmployeeList_Load(object sender, EventArgs e)
+        {
 
+            FillAllData();
 
 
         }
@@ -120,6 +128,11 @@ namespace PersonelTracking
         }
 
         private void btnClear_Click(object sender, EventArgs e)
+        {
+            CleanFilters();
+        }
+
+        private void CleanFilters()
         {
             txtUserNo.Clear();
             txtName.Clear();
