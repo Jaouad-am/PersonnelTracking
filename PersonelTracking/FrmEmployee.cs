@@ -63,6 +63,7 @@ namespace PersonelTracking
             cmbPosition.SelectedIndex = -1;
             combofull = true;
             if (isUpdate)
+            {
                 txtName.Text = detail.Name;
                 txtSurname.Text = detail.Surname;
                 txtUserNo.Text = detail.UserNo.ToString();
@@ -76,6 +77,8 @@ namespace PersonelTracking
                 imagepath = Application.StartupPath + "\\images\\" + detail.ImagePath;
                 txtImagePath.Text = imagepath;
                 pictureBox1.ImageLocation = imagepath;
+            }
+                
         }
 
         private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
@@ -194,20 +197,20 @@ namespace PersonelTracking
                         EMPLOYEE employee = new EMPLOYEE();
                         if (txtImagePath.Text != imagepath)
                         {
-                            if (File.Exists(@"\\images\\+" + detail.ImagePath))
-                                File.Delete(@"\\images\\+" + detail.ImagePath);
+                            if (File.Exists(@"images\\" + detail.ImagePath))
+                                File.Delete(@"images\\" + detail.ImagePath);
 
-                            File.Copy(txtImagePath.Text, @"images\\+" + fileName);
+                            File.Copy(txtImagePath.Text, @"images\\" + fileName);
                             employee.ImagePath = fileName;
 
                         }
                         else
-                        {
+                        
                             employee.ImagePath = detail.ImagePath;
                             employee.ID = detail.EmployeeID;
-                            employee.UserNo = detail.UserNo;
-                            employee.Name = detail.Name;
-                            employee.Surname = detail.Surname;
+                            employee.UserNo = Convert.ToInt32(txtUserNo.Text);
+                            employee.Name = txtName.Text;
+                            employee.Surname = txtSurname.Text;
                             employee.isAdmin = chAdmin.Checked;
                             employee.Password = txtPassword.Text;
                             employee.Address = txtAddress.Text;
@@ -216,7 +219,9 @@ namespace PersonelTracking
                             employee.PositionID = Convert.ToInt32(cmbPosition.SelectedValue);
                             employee.Salary = Convert.ToInt32(txtSalary.Text);
                             EmployeeBLL.UpdateEmployee(employee);
-                        }
+                            MessageBox.Show("Employee Updated");
+                            this.Close();
+                        
                     }
                 }
 
