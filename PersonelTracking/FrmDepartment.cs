@@ -18,7 +18,8 @@ namespace PersonelTracking
         {
             InitializeComponent();
         }
-
+        public bool isUpdate = false;
+        public DEPARTMENT detail = new DEPARTMENT();
         private void FrmDepartment_Load(object sender, EventArgs e)
         {
 
