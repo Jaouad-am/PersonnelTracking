@@ -70,7 +70,7 @@ namespace PersonelTracking
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             detail.ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            detail.DepartmentName = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            detail.DepartmentName = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
     }
 }
