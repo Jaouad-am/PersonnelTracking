@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.DTO;
 
 namespace PersonelTracking
 {
@@ -23,7 +24,9 @@ namespace PersonelTracking
         {
             this.Close();
         }
-        List<DEPARTMENT> DepartmentList = new List<DEPARTMENT>(); 
+        List<DEPARTMENT> DepartmentList = new List<DEPARTMENT>();
+        public bool isUpdate = false;
+        public PositionDTO detail = new PositionDTO();
         private void FrmPosition_Load(object sender, EventArgs e)
         {
             DepartmentList = DepartmentBLL.GetDepartments();
