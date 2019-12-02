@@ -29,11 +29,17 @@ namespace PersonelTracking
         public PositionDTO detail = new PositionDTO();
         private void FrmPosition_Load(object sender, EventArgs e)
         {
+
             DepartmentList = DepartmentBLL.GetDepartments();
             cmbDepartment.DataSource = DepartmentList;
             cmbDepartment.DisplayMember = "DepartmentName";
             cmbDepartment.ValueMember = "ID";
             cmbDepartment.SelectedIndex = -1;
+            if (isUpdate)
+            {
+                txtPosition.Text = detail.PositionName;
+                cmbDepartment.SelectedValue = detail.DepartmentID;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -48,13 +54,30 @@ namespace PersonelTracking
             }
             else
             {
-                POSITION position = new POSITION();
-                position.PositionName = txtPosition.Text;
-                position.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
-                PositionBLL.AddPosition(position);
-                MessageBox.Show("Position Added!");
-                txtPosition.Clear();
-                cmbDepartment.SelectedIndex = -1;
+                if (!isUpdate)
+                {
+                    POSITION position = new POSITION();
+                    position.PositionName = txtPosition.Text;
+                    position.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                    PositionBLL.AddPosition(position);
+                    MessageBox.Show("Position Added!");
+                    txtPosition.Clear();
+                    cmbDepartment.SelectedIndex = -1;
+                }
+                else
+                {
+                    POSITION position = new POSITION();
+                    position.ID = detail.ID;
+                    position.PositionName = txtPosition.Text;
+                    position.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
+                    bool control = false;
+                    if (Convert.ToInt32(cmbDepartment.SelectedValue) != detail.OldDepartmentID)
+                        control = true;
+                    PositionBLL.UpdatePosition(position, control);
+                    MessageBox.Show("position updated");
+                    this.Close();
+
+                }
             }
         }
     }
