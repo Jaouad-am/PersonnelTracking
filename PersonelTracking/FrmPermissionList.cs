@@ -185,5 +185,19 @@ namespace PersonelTracking
             FillAllData();
             CleanFilters();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("are you sure?", "delete", MessageBoxButtons.YesNo);
+            if(result==DialogResult.Yes)
+            {
+                if (detail.State == PermissionStates.Approved || detail.State == PermissionStates.Disapproved)
+                    MessageBox.Show("you cannot delete approved or disaproved permissions!");
+                else
+                {
+                    PermissionBLL.DeletePermission(detail.PermissionID);
+                }
+            }
+        }
     }
 }
