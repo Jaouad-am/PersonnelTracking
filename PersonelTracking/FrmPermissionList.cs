@@ -196,6 +196,9 @@ namespace PersonelTracking
                 else
                 {
                     PermissionBLL.DeletePermission(detail.PermissionID);
+                    MessageBox.Show("permission deleted");
+                    FillAllData();
+                    CleanFilters();
                 }
             }
         }

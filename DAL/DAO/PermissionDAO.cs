@@ -72,6 +72,21 @@ namespace DAL.DAO
             return permissionlist;
         }
 
+        public static void DeletePermission(int permissionID)
+        {
+            try
+            {
+                PERMISSION prm = db.PERMISSIONs.First(x => x.ID == permissionID);
+                db.PERMISSIONs.DeleteOnSubmit(prm);
+                db.SubmitChanges(); 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static void UpdatePermission(int permissionID, int approved)
         {
             try
