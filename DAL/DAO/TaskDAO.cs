@@ -81,6 +81,21 @@ namespace DAL.DAO
             return tasklist;
         }
 
+        public static void DeleteTask(int taskID)
+        {
+            try
+            {
+                TASK ts = db.TASKs.First(x => x.ID == taskID);
+                db.TASKs.DeleteOnSubmit(ts);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static void UpdateTask(TASK task)
         {
             try
