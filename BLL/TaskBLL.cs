@@ -36,5 +36,10 @@ namespace BLL
         {
             TaskDAO.DeleteTask(taskID);
         }
+
+        public static void DeleteSalary(int salaryID)
+        {
+            SalaryDAO.DeleteSalary(salaryID);
+        }
     }
 }
