@@ -160,5 +160,17 @@ namespace PersonelTracking
             detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
             detail.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("are you sure?", "delete", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                TaskBLL.DeleteEmployee(detail.EmployeeID);
+                MessageBox.Show("Employee Deleted");
+                FillAllData();
+                CleanFilters();
+            }
+        }
     }
 }

@@ -41,5 +41,10 @@ namespace BLL
         {
             SalaryDAO.DeleteSalary(salaryID);
         }
+
+        public static void DeleteEmployee(int employeeID)
+        {
+            EmployeeDAO.DeleteEmployee(employeeID);
+        }
     }
 }
