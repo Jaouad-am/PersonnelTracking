@@ -81,6 +81,18 @@ namespace DAL.DAO
                 EMPLOYEE emp = db.EMPLOYEEs.First(x => x.ID == employeeID);
                 db.EMPLOYEEs.DeleteOnSubmit(emp);
                 db.SubmitChanges();
+
+                List<TASK> tasks = db.TASKs.Where(x => x.EmployeeID == employeeID).ToList();
+                db.TASKs.DeleteAllOnSubmit(tasks);
+                db.SubmitChanges();
+
+                List<SALARY> salaries = db.SALARies.Where(x => x.EmployeeID == employeeID).ToList();
+                db.SALARies.DeleteAllOnSubmit(salaries);
+                db.SubmitChanges();
+
+                List<PERMISSION> permissions = db.PERMISSIONs.Where(x => x.EmployeeID == employeeID).ToList();
+                db.PERMISSIONs.DeleteAllOnSubmit(permissions);
+                db.SubmitChanges();
             }
             catch (Exception ex)
             {

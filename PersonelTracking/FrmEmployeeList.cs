@@ -167,7 +167,7 @@ namespace PersonelTracking
             if (result == DialogResult.Yes)
             {
                 TaskBLL.DeleteEmployee(detail.EmployeeID);
-                MessageBox.Show("Employee Deleted");
+                MessageBox.Show("Employee was Deleted");
                 FillAllData();
                 CleanFilters();
             }
