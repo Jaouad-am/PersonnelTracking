@@ -41,5 +41,20 @@ namespace DAL.DAO
                 throw ex;
             }
         }
+
+        public static void DeleteDepartment(int iD)
+        {
+            try
+            {
+                DEPARTMENT dp = db.DEPARTMENTs.First(x => x.ID == iD);
+                db.DEPARTMENTs.DeleteOnSubmit(dp);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

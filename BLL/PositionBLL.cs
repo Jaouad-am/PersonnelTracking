@@ -32,5 +32,7 @@ namespace BLL
         {
             PositionDAO.DeletePosition(iD);
         }
+
+        
     }
 }

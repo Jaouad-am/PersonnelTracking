@@ -64,7 +64,7 @@ namespace DAL.DAO
                 POSITION pos = db.POSITIONs.First(x => x.ID == iD);
                 db.POSITIONs.DeleteOnSubmit(pos);
                 db.SubmitChanges();
-                //check sql express for triggers
+                //check sql express for triggers or create them in visual studio
             }
             catch (Exception ex)
             {
