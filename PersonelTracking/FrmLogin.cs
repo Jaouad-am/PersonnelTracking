@@ -49,7 +49,7 @@ namespace PersonelTracking
                     employee = employeelist.First();
                     UserStatic.EmployeeID = employee.ID;
                     UserStatic.UserNo = employee.UserNo;
-                    UserStatic.isAdmin = employee.isAdmin;
+                    UserStatic.isAdmin = Convert.ToBoolean(employee.isAdmin);
                     FrmMain main = new FrmMain();
                     this.Hide();
                     main.ShowDialog();
@@ -58,5 +58,6 @@ namespace PersonelTracking
             
             
         }
+
     }
 }

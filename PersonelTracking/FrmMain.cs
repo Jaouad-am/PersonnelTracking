@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DAL.DTO;
 
 namespace PersonelTracking
 {
@@ -48,10 +50,24 @@ namespace PersonelTracking
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
-            FrmEmployeeList el = new FrmEmployeeList();
-            this.Hide();
-            el.ShowDialog();
-            this.Visible = true;
+            if (!UserStatic.isAdmin)
+            {
+                EmployeeDTO dto = EmployeeBLL.GetAll();
+                EmployeeDetailDTO detail = dto.Employees.First(x => x.EmployeeID == UserStatic.EmployeeID);
+                FrmEmployee frm = new FrmEmployee();
+                frm.detail = detail;
+                frm.isUpdate = true;
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible = true;
+            }
+            else
+            {
+                FrmEmployeeList el = new FrmEmployeeList();
+                this.Hide();
+                el.ShowDialog();
+                this.Visible = true;
+            }
         }
 
         private void btnSalary_Click(object sender, EventArgs e)
@@ -76,6 +92,17 @@ namespace PersonelTracking
             this.Hide();
             pl.ShowDialog();
             this.Visible = true;
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            if (!UserStatic.isAdmin)
+            {
+                btnDepartment.Visible = false;
+                btnPosition.Visible = false; 
+                btnLogOut.Location= new Point(231, 217);
+                btnExit.Location= new Point(451, 217);
+            }
         }
     }
 }
