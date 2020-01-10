@@ -39,6 +39,10 @@ namespace PersonelTracking
         void FillAllData()
         {
             dto = TaskBLL.GetAll();
+            if (!UserStatic.isAdmin)
+            {
+                dto.Tasks = dto.Tasks.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
+            }
             dataGridView1.DataSource = dto.Tasks;
             combofull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -76,7 +80,16 @@ namespace PersonelTracking
             dataGridView1.Columns[14].Visible = false;
             /*MessageBox.Show(UserStatic.EmployeeID.ToString() + " " + UserStatic.UserNo.ToString() 
                 + " " + UserStatic.isAdmin.ToString());*/
-           
+            if (!UserStatic.isAdmin)
+            {
+                btnNew.Visible = false;
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
+                btnClose.Location = new Point(132, 52);
+                btnApprove.Location = new Point(138, 52);
+                pnlForAdmin.Hide();
+                btnApprove.Text = "Delivery";
+            }
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -186,6 +199,11 @@ namespace PersonelTracking
                 FillAllData();
                 CleanFilters();
             }
+        }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
