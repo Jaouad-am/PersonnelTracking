@@ -46,5 +46,10 @@ namespace BLL
         {
             EmployeeDAO.DeleteEmployee(employeeID);
         }
+
+        public static void ApproveTask(int taskID, bool isAdmin)
+        {
+            TaskDAO.ApproveTask(taskID, isAdmin);
+        }
     }
 }

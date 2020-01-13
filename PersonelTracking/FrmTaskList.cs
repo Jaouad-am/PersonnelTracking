@@ -85,8 +85,8 @@ namespace PersonelTracking
                 btnNew.Visible = false;
                 btnUpdate.Visible = false;
                 btnDelete.Visible = false;
-                btnClose.Location = new Point(132, 52);
-                btnApprove.Location = new Point(138, 52);
+                btnClose.Location = new Point(494, 24);
+                btnApprove.Location = new Point(182, 24);
                 pnlForAdmin.Hide();
                 btnApprove.Text = "Delivery";
             }
@@ -203,6 +203,22 @@ namespace PersonelTracking
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
+            if (UserStatic.isAdmin && detail.TaskStateID == TaskStates.OnEmployee && detail.EmployeeID != UserStatic.EmployeeID)
+                MessageBox.Show("employee has to deliver a task before approving by admin");
+            else if(UserStatic.isAdmin && detail.TaskStateID == TaskStates.Approved)
+                MessageBox.Show("task is already approved");
+            else if(!UserStatic.isAdmin && detail.TaskStateID == TaskStates.Delivered)
+                MessageBox.Show("task is already delivered");
+            else if (!UserStatic.isAdmin && detail.TaskStateID == TaskStates.Approved)
+                MessageBox.Show("task is already approved");
+            else
+            {
+                TaskBLL.ApproveTask(detail.TaskID, UserStatic.isAdmin);
+                MessageBox.Show("task updated");
+                FillAllData();
+                CleanFilters();
+            }
+
 
         }
     }
