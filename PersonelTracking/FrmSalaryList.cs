@@ -76,6 +76,8 @@ namespace PersonelTracking
         void FillAllData()
         {
             dto = SalaryBLL.GetAll();
+            if (!UserStatic.isAdmin)
+                dto.Salaries = dto.Salaries.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
             dataGridView1.DataSource = dto.Salaries;
             combofull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -112,7 +114,14 @@ namespace PersonelTracking
             dataGridView1.Columns[11].HeaderText = "Salary";
             dataGridView1.Columns[12].Visible = false;
             dataGridView1.Columns[13].Visible = false;
-            
+            if (!UserStatic.isAdmin)
+            {
+                btnUpdate.Hide();
+                btnDelete.Hide();
+                btnClose.Location=new Point(410,24);
+                btnNew.Location=new Point(255,24);
+                pnlForAdmin.Hide();
+            }
 
         }
 
