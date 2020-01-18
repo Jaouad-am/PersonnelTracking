@@ -64,6 +64,7 @@ namespace PersonelTracking
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -84,6 +85,7 @@ namespace PersonelTracking
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnExcel);
             this.panel3.Controls.Add(this.cmbState);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.btnClear);
@@ -106,7 +108,7 @@ namespace PersonelTracking
             // 
             this.cmbState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(133, 198);
+            this.cmbState.Location = new System.Drawing.Point(128, 163);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(125, 28);
             this.cmbState.TabIndex = 26;
@@ -115,7 +117,7 @@ namespace PersonelTracking
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(22, 201);
+            this.label10.Location = new System.Drawing.Point(17, 166);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 20);
             this.label10.TabIndex = 27;
@@ -147,7 +149,7 @@ namespace PersonelTracking
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(20, 155);
+            this.label9.Location = new System.Drawing.Point(15, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(107, 20);
             this.label9.TabIndex = 24;
@@ -156,7 +158,7 @@ namespace PersonelTracking
             // txtDayAmount
             // 
             this.txtDayAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDayAmount.Location = new System.Drawing.Point(133, 152);
+            this.txtDayAmount.Location = new System.Drawing.Point(128, 117);
             this.txtDayAmount.Name = "txtDayAmount";
             this.txtDayAmount.Size = new System.Drawing.Size(125, 26);
             this.txtDayAmount.TabIndex = 2;
@@ -200,7 +202,7 @@ namespace PersonelTracking
             // 
             this.dpEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpEnd.Location = new System.Drawing.Point(133, 111);
+            this.dpEnd.Location = new System.Drawing.Point(128, 76);
             this.dpEnd.Name = "dpEnd";
             this.dpEnd.Size = new System.Drawing.Size(125, 23);
             this.dpEnd.TabIndex = 1;
@@ -209,7 +211,7 @@ namespace PersonelTracking
             // 
             this.dpStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpStart.Location = new System.Drawing.Point(133, 69);
+            this.dpStart.Location = new System.Drawing.Point(128, 34);
             this.dpStart.Name = "dpStart";
             this.dpStart.Size = new System.Drawing.Size(125, 23);
             this.dpStart.TabIndex = 0;
@@ -218,7 +220,7 @@ namespace PersonelTracking
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 71);
+            this.label8.Location = new System.Drawing.Point(15, 36);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 20);
             this.label8.TabIndex = 20;
@@ -228,7 +230,7 @@ namespace PersonelTracking
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(20, 113);
+            this.label7.Location = new System.Drawing.Point(15, 78);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 20);
             this.label7.TabIndex = 19;
@@ -238,7 +240,7 @@ namespace PersonelTracking
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(20, 31);
+            this.label6.Location = new System.Drawing.Point(20, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 20);
             this.label6.TabIndex = 18;
@@ -448,6 +450,17 @@ namespace PersonelTracking
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.Location = new System.Drawing.Point(67, 203);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(138, 52);
+            this.btnExcel.TabIndex = 28;
+            this.btnExcel.Text = "Export to Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // FrmPermissionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,5 +523,6 @@ namespace PersonelTracking
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

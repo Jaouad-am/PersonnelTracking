@@ -61,6 +61,7 @@ namespace PersonelTracking
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -81,6 +82,7 @@ namespace PersonelTracking
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnExcel);
             this.panel3.Controls.Add(this.btnClear);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.cmbTaskState);
@@ -92,16 +94,16 @@ namespace PersonelTracking
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(382, 0);
+            this.panel3.Location = new System.Drawing.Point(330, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(418, 251);
+            this.panel3.Size = new System.Drawing.Size(470, 251);
             this.panel3.TabIndex = 1;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(265, 183);
+            this.btnClear.Location = new System.Drawing.Point(322, 183);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(138, 52);
             this.btnClear.TabIndex = 4;
@@ -112,7 +114,7 @@ namespace PersonelTracking
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(112, 183);
+            this.btnSearch.Location = new System.Drawing.Point(169, 183);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(138, 52);
             this.btnSearch.TabIndex = 3;
@@ -236,7 +238,7 @@ namespace PersonelTracking
             this.pnlForAdmin.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlForAdmin.Location = new System.Drawing.Point(0, 0);
             this.pnlForAdmin.Name = "pnlForAdmin";
-            this.pnlForAdmin.Size = new System.Drawing.Size(382, 251);
+            this.pnlForAdmin.Size = new System.Drawing.Size(330, 251);
             this.pnlForAdmin.TabIndex = 0;
             // 
             // cmbPosition
@@ -413,6 +415,17 @@ namespace PersonelTracking
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.Location = new System.Drawing.Point(25, 183);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(138, 52);
+            this.btnExcel.TabIndex = 15;
+            this.btnExcel.Text = "Export to Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // FrmTaskList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,5 +485,6 @@ namespace PersonelTracking
         private System.Windows.Forms.RadioButton rbStartDate;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

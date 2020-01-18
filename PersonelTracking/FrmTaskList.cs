@@ -221,5 +221,10 @@ namespace PersonelTracking
 
 
         }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            ExportToExcel.ExportExcel(dataGridView1);
+        }
     }
 }
