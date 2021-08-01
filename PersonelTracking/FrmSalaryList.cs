@@ -24,12 +24,18 @@ namespace PersonelTracking
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            FrmSalary sl = new FrmSalary();
+            this.Hide();
+            sl.ShowDialog();
+            this.Visible = true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            
+            FrmSalary sl = new FrmSalary();
+            this.Hide();
+            sl.ShowDialog();
+            this.Visible = true;
         }
     }
 }

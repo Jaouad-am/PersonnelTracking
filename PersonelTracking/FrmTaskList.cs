@@ -39,12 +39,18 @@ namespace PersonelTracking
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            
+            FrmTask ts = new FrmTask();
+            this.Hide();
+            ts.ShowDialog();
+            this.Visible = true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            
+            FrmTask ts = new FrmTask();
+            this.Hide();
+            ts.ShowDialog();
+            this.Visible = true;
         }
     }
 }
